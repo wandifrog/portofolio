@@ -12,17 +12,25 @@
                     </div>
                 </router-link>
                 <div class="card__button">
-                    <router-link :to="project.read">
-                        <div class="button">read</div>
-                    </router-link>
-                    <a target="_blank" :href="project.link">
-                        <div class="button">explore</div>
-                    </a>
+                    <router-link :to="project.read"
+                     class="button">read</router-link>
+                    <a target="_blank" rel="noopener" :href="project.link"
+                      class="button">explore</a>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    projects() {
+      return this.$store.state.projects;
+    }
+  }
+};
+</script>
 
 <style scoped>
 .header {
@@ -73,9 +81,11 @@
   cursor: pointer;
   transition: 300ms ease;
 }
-.card__bg:hover {
-  background-size: 110%;
-  opacity: 0.8;
+@media screen and (min-width: 1024px) {
+  .card__bg:hover {
+    background-size: 110%;
+    opacity: 0.8;
+  }
 }
 
 .card__bg .title {
@@ -102,6 +112,7 @@
   margin-left: 4px;
   margin-top: 10px;
   line-height: 30px;
+  height: 30px;
   border-radius: 12px;
   font-size: 14px;
   font-weight: 500;
@@ -109,13 +120,16 @@
   color: #03a9f4;
   user-select: none;
 }
-.card__button .button:hover {
-  background-color: #e1f5fe;
-}
-.card__button .button:active {
-  transform: translateY(1px);
+@media screen and (min-width: 1024px) {
+  .card__button .button:hover {
+    background-color: #e1f5fe;
+  }
+  .card__button .button:active {
+    transform: translateY(1px);
+  }
 }
 
+/* ipad air */
 @media screen and (max-width: 1024px) {
   .header {
     margin: 30px auto;
@@ -127,21 +141,24 @@
   .card__button .button {
     background-color: #e1f5fe;
     margin-left: 10px;
+    border-radius: 0;
   }
 }
-@media screen and (max-width: 700px) {
+/* mobile device */
+@media screen and (max-width: 450px) {
   .header__title {
     font-size: 8vw;
   }
   .header__subtitle {
     font-size: 4.53334vw;
+    color: #212121;
   }
   .card {
     width: 90%;
     margin: 0 20px 28px;
   }
   .card__bg {
-    height: 150px;
+    height: 47vw;
   }
   .card__bg .title {
     position: relative;
@@ -151,64 +168,9 @@
     padding: 1px;
     top: 7px;
   }
+  .card__button .button {
+    color: #fafafa;
+    background-color: #212121;
+  }
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      projects: [
-        {
-          title: "Enterkomputer",
-          read: "/enterkomputer",
-          link: "https://enter-komputer.firebaseapp.com/",
-          image: "background-image: url(src/assets/bg09.jpg)"
-        },
-        {
-          title: "Chat App",
-          read: "/chatapp",
-          link: "https://chat-62fb2.firebaseapp.com/",
-          image: "backgroundImage: url(src/assets/bg11.jpg)"
-        },
-        {
-          title: "SMS Gateway",
-          read: "/smsgateway",
-          link: "https://wandi-frog.firebaseapp.com/smsgateway/",
-          image: "backgroundImage: url(src/assets/bg10.jpg)"
-        },
-        {
-          title: "T9 Keyboard (Vue)",
-          read: "/t9vue",
-          link: "https://wandi-frog.firebaseapp.com/t9vue/",
-          image: "backgroundImage: url(src/assets/bg06.jpg)"
-        },
-        {
-          title: "Pegipegi (Mobile)",
-          read: "/pegipegi",
-          link: "https://wandi-frog.firebaseapp.com/pegipegi",
-          image: "backgroundImage: url(src/assets/bg05.jpg)"
-        },
-        {
-          title: "Firebase Database (CRUD)",
-          read: "/crud",
-          link: "https://crud-52b88.firebaseapp.com/input",
-          image: "backgroundImage: url(src/assets/bg04.jpg)"
-        },
-        {
-          title: "PSU Calculator (Mobile)",
-          read: "/psucalc",
-          link: "#",
-          image: "backgroundImage: url(src/assets/bg07.jpg)"
-        },
-        {
-          title: "Pantau Tiket",
-          read: "/pantautiket",
-          link: "#",
-          image: "backgroundImage: url(src/assets/bg08.jpg)"
-        }
-      ]
-    };
-  }
-};
-</script>

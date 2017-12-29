@@ -1,4 +1,4 @@
-# portofolio
+# Portofolio
 
 > A Vue.js project
 
